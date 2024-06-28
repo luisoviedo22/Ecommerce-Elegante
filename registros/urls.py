@@ -23,5 +23,5 @@ from registros.views import *
 urlpatterns = [
     path("usuarios/", usuario_list_view, name="usuarios-listar"),
     path("usuarios/<int:id>/", usuario_list_view, name="usuarios-editar"),
-    path("usuarios/<int:id>/", usuario_delete_view, name="usuario-eliminar"),
+    path("usuarios/eliminar/<int:id>/", usuario_delete_view, name="usuario-eliminar"),
 ]

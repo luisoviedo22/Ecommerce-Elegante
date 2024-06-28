@@ -39,9 +39,10 @@ class Usuario(models.Model):
             return f"{self.primer_nombre} {self.segundo_nombre} {self.primer_apellido} {self.segundo_apellido}"
         else:
             return f"{self.primer_nombre} {self.primer_apellido} {self.segundo_apellido}"
+    
     def usuario_activo(self):
         if self.estado:
-            return Usuario.objects.filter(user=self, estado=True)
+            return Usuario.objects.filter(usuario=self, estado=True)
         else:
-            return Usuario.objetcs.none()
+            return Usuario.objects.none()
         
