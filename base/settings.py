@@ -38,6 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'carrito',
+    'pagos',
+    'pedidos',
+    'productos',
     'registros',
     'django_bootstrap5', # pip install django-bootstrap5
     'crispy_forms', # pip install django-crispy-forms
@@ -63,7 +67,7 @@ ROOT_URLCONF = 'base.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['base/templates'],
+        'DIRS': [BASE_DIR / 'base' / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

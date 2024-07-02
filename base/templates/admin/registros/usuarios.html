@@ -13,7 +13,7 @@
                     {% include 'partials/admin/modals/modal-eliminar.html' %}
                 </form>
             </div>
-        <div class="col-md-7 ms-4">
+        <div class="col-md-8 ms-4">
         <table class="table table-striped" id="usuarios-table">
             <thead>
                 <tr>
@@ -47,25 +47,14 @@
                 url: '/registros/api/usuarios/',
                 method: 'GET',
                 success: function (data) {
-                    console.log("holii")
                     var usersTableBody = $('#users-table-body')
                     data.forEach(function (user) {
                         if(user.estado) {
-                        var imagen = user.imagen ? '<img src="' + user.imagen + '" alt="Imagen de ' + user.primer_nombre + '" width="50">' : 'No disponible'
-                        var editButton = '<a href="/registros/usuarios/' + user.id + '/" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fas fa-pencil-alt"></i></a>'
-                        var deleteButton = '<button type="button" class="btn btn-danger" id="btnEliminar" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-bs-titulo="Usuario" data-bs-nombre="' + user.primer_nombre + '" data-bs-url="/registros/usuarios/eliminar/' + user.id + '/" >  <i class="fas fa-trash-alt"></i>   </button>'
-                        usersTableBody.append(
-                            '<tr>' +
-                                '<td>' + imagen + '</td>' +
-                                '<td>' + user.primer_nombre + ' ' 
-                                        + user.primer_apellido + ' ' 
-                                        + user.segundo_apellido + '</td>' +
-                                '<td>' + user.fecha_nacimiento + '</td>' +
-                                '<td>' + user.correo + '</td>' +
-                                '<td>' + user.tipo_documento + '</td>' +
-                                '<td>' + user.documento + '</td>' +
-                                '<td id="contenedorBotones">' + editButton + ' ' + deleteButton + '</td>' +
-                            '</tr>');
+                            var imagen = user.imagen ? '<img src="' + user.imagen + '" alt="Imagen de ' + user.primer_nombre + '" width="50">' : 'No disponible'
+                            var editButton = '<a href="/registros/usuarios/' + user.id + '/" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fas fa-pencil-alt"></i></a>'
+                            var deleteButton = '<button type="button" class="btn btn-danger" id="btnEliminar" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-bs-titulo="Usuario" data-bs-nombre="' + user.primer_nombre + '" data-bs-url="/registros/usuarios/eliminar/' + user.id + '/" >  <i class="fas fa-trash-alt"></i>   </button>'
+                            
+                            usersTableBody.append('<tr>' + '<td>' + imagen + '</td>' + '<td>' + user.primer_nombre + ' ' + user.primer_apellido + ' ' + user.segundo_apellido + '</td>' + '<td>' + user.fecha_nacimiento + '</td>' + '<td>' + user.correo + '</td>' + '<td>' + user.tipo_documento + '</td>' + '<td>' + user.documento + '</td>' + '<td id="contenedorBotones">' + editButton + ' ' + deleteButton + '</td>' + '</tr>')
                         }
                     })
                     $('#usuarios-table').DataTable({
@@ -84,13 +73,13 @@
 
             $("body").on('click', '#btnEliminar', function(event) {
 
-                // Obtener el valor de data-bs-url del botón
-                var urlEliminar = $(this).data('bs-url');
-                var usuario = $(this).data('bs-nombre');
-                // Modificar el atributo href del enlace dentro del modal
-                $('#confirmEliminar').attr('href', urlEliminar);
-                $('#usuarioNombre').text(usuario);
-                event.preventDefault();
+                 // Obtener el valor de data-bs-url del botón
+                 var urlEliminar = $(this).data('bs-url');
+                  var usuario = $(this).data('bs-nombre');
+                 // Modificar el atributo href del enlace dentro del modal
+                 $('#confirmEliminar').attr('href', urlEliminar);
+                 $('#usuarioNombre').text(usuario);
+                 event.preventDefault();
             });
         })
     </script>
