@@ -1,0 +1,47 @@
+{% extends "partials/admin/body.html" %}
+{% load static %}
+
+{% block contenido %}
+<div class="container-fluid d-flex justify-content-center">
+    <div class="col-md-6">
+        <h1 class="text-center mb-4">Agregar productos</h1>
+
+        <form method="post" enctype="multipart/form-data" class="border rounded card p-5">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" required>
+            </div>
+            <div class="form-group">
+                <label for="descripcion">Descripción</label>
+                <textarea class="form-control" id="descripcion" name="descripcion" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="precio">Precio</label>
+                <input type="number" class="form-control" id="precio" name="precio" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="categoria">Categoría</label>
+                <select class="form-control" id="categoria" name="categoria" required>
+                    <option value="">Selecciona una categoría</option>
+                    <option value="camisas">Bermudas</option>
+                    <option value="pantalones">Camisas</option>
+                    <option value="vestidos">Chamarras</option>
+                    <option value="zapatos">Pantalonetas</option>
+                    <option value="zapatos">Pantalones</option>
+                    <option value="zapatos">Sacos</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="talla">Talla</label>
+                <input type="text" class="form-control" id="talla" name="talla" required>
+            </div>
+            <div class="form-group">
+                <label for="imagen">Imagen</label>
+                <input type="file" class="form-control-file" id="imagen" name="imagen">
+            </div>
+            <button type="submit" class="btn btn-primary">Agregar producto</button>
+        </form>
+    </div>
+</div>
+{% endblock contenido %}

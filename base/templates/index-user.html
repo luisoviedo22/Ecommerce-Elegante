@@ -2,5 +2,36 @@
 {% load static %}
 
 {% block contenido %}
-
-{% endblock contenido %}
+    <div id="carouselExampleIndicators" class="carousel slide d-flex justify-content-center align-items-center py-5 border-bottom" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner h-100">
+            <div class="carousel-item active h-100">
+                <div class="d-flex justify-content-center align-items-center">
+                    <img src="{% static 'img/mark1.jpg' %}" class="img-fluid mw-100 mh-100" alt="Imagen 1">
+                </div>
+            </div>
+            <div class="carousel-item h-100">
+                <div class="d-flex justify-content-center align-items-center">
+                    <img src="{% static 'img/mark2.jpg' %}" class="img-fluid mw-100 mh-100" alt="Imagen 2">
+                </div>
+            </div>
+            <div class="carousel-item h-100">
+                <div class="d-flex justify-content-center align-items-center">
+                    <img src="{% static "img/mark3.jpg" %}" class="img-fluid mw-100 mh-100" alt="Imagen 3">
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon border bg-black rounded-pill" style="height: 10%" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon border bg-black rounded-pill" style="height: 10%" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+{% endblock %}

@@ -1,0 +1,85 @@
+{% load static %}
+{% block header %}
+    <div>
+        <div class="container p-0">
+            <div class="row px-3">
+                <div class="col-md-6 d-flex justify-content-start">
+                    <a href="#" class="text-decoration-none mx-2" style="color: #8B8B8B;"><strong>Servicio al Cliente</strong></a>
+                </div>
+                <div class="col-md-6 d-flex justify-content-end">
+                    <a href="#" class="text-decoration-none" style="color: #8B8B8B;"><strong>Contáctanos al WhatsApp </strong><img src="{% static 'img\whats.png' %}" alt="lg-wt" style="height: 1em; vertical-align: middle;"></a>
+                </div>
+            </div>
+        </div>
+        {% block saludo %}
+        <div class="container-fluid h-25" style="background-color: black">
+            <div class="row d-flex justify-content-center align-items-center">
+                <div class="col-12 text-center">
+                    <p class="text-white"><strong>Bienvenido, encuentra lo que deseas</strong></p>
+                </div>
+            </div>
+        </div>
+        {% endblock saludo %}
+        <div class="container-fluid border-bottom">
+            <div class="row">
+                <div class="col-md-4 d-flex justify-content-center align-items-center p-3 text-center">
+                    <h1>Tienda virtual de Moda</h1>
+                </div>
+                <div class="col-md-4 d-flex justify-content-center align-items-center p-3">
+                    <select name="opciones" class="w-75 h-50 form-control form-control-lg rounded-pill px-4 py-1 font-weight-bold border border-dark shadow fs-4 fs-sm-3 fs-md-2 fs-lg-1" style="color: black; display: flex; text-align: center; font-weight: bold;">
+                        <option disabled selected style="font-weight: bold; color:grey">¿Qué estas buscando?</option>
+                        <option style="color: black;" value="Bermudas">Bermudas</option>
+                        <option style="color: black;" value="Camisas">Camisas</option>
+                        <option style="color: black;" value="Chamarras">Chamarras</option>
+                        <option style="color: black;" value="Pantalonetas">Pantalonetas</option>
+                        <option style="color: black;" value="Pantalones">Pantalones</option>
+                        <option style="color: black;" value="Sacos">Sacos</option>
+                    </select>
+                </div>
+                {% block acciones_users %}
+                <div class="col-md-4 d-flex justify-content-center align-items-center p-3">
+                    <div class="row">
+                        <div class="col-md-6 dropdown">
+                            <a href="#" class="btn dropdown-toggle-split" data-bs-toggle="dropdown">
+                                <img src="{% static 'img\usuario.png' %}" alt="usuario" style="height: 3em">
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end text-center">
+                                <li><button class="btn p-25">INICIAR SESIÓN</button></li>
+                                <li><button class="btn p-25">REGISTRARSE</button></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="#" class="btn" data-bs-toggle="modal" data-bs-target="#carritoModal">
+                                <img src="{% static 'img\carrito.png' %}" alt="carrito" style="height: 3em">
+                            </a>
+                        </div>
+                        <div class="modal fade" id="carritoModal" tabindex="-1" aria.labelledby="carritoModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-fullscreen-md-down modal-dialog-srollable">
+                                <div class="modal-content">
+                                    <div class="modal-header text-center">
+                                        <h5 class="modal-title" id="carritoModalLabel">Carrito de compras - Tienda Virtual</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body text-center">
+                                        <p><strong>¡Tú carrito de compras está vacío!</strong></p>
+                                    </div>
+                                    <div class="modal-body text-center">
+                                        <p><strong>Consulta nuestros productos:</strong></p>
+                                    </div>
+                                    <div>
+                                        img
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                        <button type="button" class="btn btn-primary">Finalizar compra</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endblock acciones_users %}
+            </div>
+        </div>
+    </div>
+{% endblock header %}

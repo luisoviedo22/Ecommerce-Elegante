@@ -1,0 +1,56 @@
+{% extends "partials/admin/body.html" %}
+{% load static %}
+
+{% block contenido %}
+<div class="container-fluid border rounded pb-4" style="width:90%">
+    <div class="row justify-content-center w-100 p-3">
+        <h1>Productos</h1>
+        {% include 'partials/admin/modals/modal-eliminar-producto.html' %}
+        <table class="table border rounded" style="height:90%; width:100%; margin-bottom:40%" id="productos-table">
+            <thead>
+                <tr>
+                    <th>Imagen</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Categoría</th>
+                    <th>Talla</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for producto in productos %}
+                <tr>
+                    <td>
+                        {% if producto.imagen %}
+                        <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}" class="img-thumbnail" style="max-width: 50px;">
+                        {% endif %}
+                    </td>
+                    <td>{{ producto.nombre }}</td>
+                    <td>$ {{ producto.precio }}</td>
+                    <td>{{ producto.categoria }}</td>
+                    <td>{{ producto.talla }}</td>
+                    <td>
+                        <a href="{% url 'edit_producto' producto.id %}" class="btn btn-primary btn-sm">Editar</a>
+                        <a href="{% url 'delete_producto' producto.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% block scripts_product %}
+            <script>
+                $(document).ready(function() {
+                    $('#productos-table').DataTable({
+                        buttons: ['copy', 'csv', 'excel', 'pdf', 'print', 'colvis'],
+                        layout: {
+                            topStart: 'buttons'
+                        },
+                        responsive: true,
+                        scroller: true
+                    });
+                });
+            </script>
+        {% endblock scripts_product %}
+    </div>
+</div>
+{% endblock contenido %}

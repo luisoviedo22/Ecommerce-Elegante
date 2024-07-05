@@ -18,7 +18,7 @@ def usuario_list_view(request, id=None):
         form = UsuarioEditarForm(request.POST, request.FILES, instance=usuario)
         if form.is_valid():
             usuario= form.save()
-            messages.success(request, f'¡El usuario se edito de forma exitosa')
+            messages.success(request, f'¡El usuario se editó de forma exitosa')
             return redirect("usuarios-listar")
         else:
             form= UsuarioEditarForm(request.POST, request.FILES, instance=usuario)
@@ -75,3 +75,9 @@ def usuario_delete_view(request, id):
     usuario = Usuario.objects.filter(id=id)
     usuario.update(estado=False)
     return redirect('usuarios-listar')
+
+def header_register(request):
+    return render(request, 'users/registrados/registrado_header.html')
+
+def add_products(request):
+    return render(request, 'admin/add_products/add_producto.html')

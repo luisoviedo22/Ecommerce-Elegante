@@ -1,123 +1,50 @@
 {% load static %}
-
-    <div class="container p-0">
-        <div class="row px-3">
-            <div class="col-md-6 d-flex justify-content-start">
-                <a href="#" class="text-decoration-none mx-2" style="color: #8B8B8B;"><strong>Hombre</strong></a> | <a class="text-decoration-none mx-2" href="#" style="color: #8B8B8B;"><strong>Mujer</strong></a> | <a class="text-decoration-none mx-2" href="#" style="color: #8B8B8B;"><strong>Niño</strong></a> | <a class="text-decoration-none mx-2" href="#" style="color: #8B8B8B;"><strong>Niña</strong></a>
-            </div>
-            <div class="col-md-6 d-flex justify-content-end">
-                <a href="#" class="text-decoration-none" style="color: #8B8B8B;"><strong>Contáctanos al WhatsApp </strong><img src="{% static 'img\whats.png' %}" alt="lg-wt" style="height: 1em; vertical-align: middle;"></a>
-            </div>
-        </div>
-    </div>
-    <div class="container-fluid h-25" style="background-color: black">
-        <div class="row d-flex justify-content-center align-items-center">
-            <div class="col-12 text-center">
-                <p class="text-white"><strong>Bienvenido, encuentra lo que deseas</strong></p>
-            </div>
-        </div>
-    </div>
-    <div class="container-fluid border-bottom">
-        <div class="row">
-            <div class="col-md-4 d-flex justify-content-center align-items-center p-3 text-center">
-                <h1>Tienda virtual de Moda</h1>
-            </div>
-            <div class="col-md-4 d-flex justify-content-center align-items-center p-3">
-                <select name="opciones" class="w-75 h-50 form-control form-control-lg rounded-pill px-4 py-1 font-weight-bold border border-dark shadow fs-4 fs-sm-3 fs-md-2 fs-lg-1" style="color: black; display: flex; text-align: center; font-weight: bold;">
-                    <option disabled selected style="font-weight: bold; color:grey">¿Qué estas buscando?</option>
-                    <option style="color: black;" value="Bermudas">Bermudas</option>
-                    <option style="color: black;" value="Camisas">Camisas</option>
-                    <option style="color: black;" value="Chamarras">Chamarras</option>
-                    <option style="color: black;" value="Gorras">Gorras</option>
-                    <option style="color: black;" value="Pantalonetas">Pantalonetas</option>
-                    <option style="color: black;" value="Pantalones">Pantalones</option>
-                    <option style="color: black;" value="Sacos">Sacos</option>
-                </select>
-            </div>
-            <div class="col-md-4 d-flex justify-content-center align-items-center p-3">
-                <div class="row">
-                    <div class="col-md-6 dropdown">
-                        <a href="#" class="btn dropdown-toggle-split" data-bs-toggle="dropdown">
-                            <img src="{% static 'img\usuario.png' %}" alt="usuario" style="height: 3em">
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end text-center">
-                            <li><button class="btn p-25">INICIAR SESIÓN</button></li>
-                            <li><button class="btn p-25">REGISTRARSE</button></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-6">
-                        <a href="#" class="btn" data-bs-toggle="modal" data-bs-target="#carritoModal">
-                            <img src="{% static 'img\carrito.png' %}" alt="carrito" style="height: 3em">
-                        </a>
-                    </div>
-                    <div class="modal fade" id="carritoModal" tabindex="-1" aria.labelledby="carritoModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-fullscreen-md-down modal-dialog-srollable">
-                            <div class="modal-content">
-                                <div class="modal-header text-center">
-                                    <h5 class="modal-title" id="carritoModalLabel">Carrito de compras - Tienda Virtual</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body text-center">
-                                    <h5>¡Tú carrito de compras está vacío!</h5>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                    <button type="button" class="btn btn-primary">Finalizar compra</button>
-                                </div>
-                            </div>
+    <div class="container-fluid d-flex justify-content-center text-center border-bottom">
+        <nav class="row">
+            <div class="col d-flex justify-content-center align-items-center">
+                <a href="{% url "index-user" %}" class="text-decoration-none py-2" style="color: black;">
+                    <div class="rounded-3 p-2" style="background-color: #F2F2F4;">
+                        <div class="d-flex justify-content-center align-items-center">
+                            <span class="fs-5 fw-bold">Inicio</span>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
-        </div>
+            <div class="col d-flex justify-content-center align-items-center ml-2">
+                <a href="{% url 'catalogo' %}" class="nav-link text-decoration-none py-2" style="color: black;" data-load-content>
+                    <div class="rounded-3 p-2" style="background-color: #F2F2F4;">
+                        <div class="d-flex justify-content-center align-items-center">
+                            <span class="fs-5 fw-bold">Hombre</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col d-flex justify-content-center align-items-center">
+                <a href="#" class="text-decoration-none py-2" style="color: black;">
+                    <div class="rounded-3 p-2" style="background-color: #F2F2F4;">
+                        <div class="d-flex justify-content-center align-items-center">
+                            <span class="fs-5 fw-bold">Mujer</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col d-flex justify-content-center align-items-center">
+                <a href="#" class="text-decoration-none py-2" style="color: black;">
+                    <div class="rounded-3 p-2" style="background-color: #F2F2F4;">
+                        <div class="d-flex justify-content-center align-items-center">
+                            <span class="fs-5 fw-bold">Niño</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col d-flex justify-content-center align-items-center">
+                <a href="#" class="text-decoration-none py-2" style="color: black;">
+                    <div class="rounded-3 p-2" style="background-color: #F2F2F4;">
+                        <div class="d-flex justify-content-center align-items-center">
+                            <span class="fs-5 fw-bold">Niña</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </nav>
     </div>
-</div>
-<div class="container-fluid d-flex justify-content-center text-center border-bottom">
-    <nav class="row">
-        <div class="col d-flex justify-content-center align-items-center">
-            <a href="#" class="text-decoration-none py-2" style="color: black;">
-                <div class="rounded-3 p-2" style="background-color: #F2F2F4;">
-                    <div class="d-flex justify-content-center align-items-center">
-                        <span class="fs-5 fw-bold">Inicio</span>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col d-flex justify-content-center align-items-center ml-2">
-            <a href="{% url 'catalogo' %}" class="nav-link text-decoration-none py-2" style="color: black;" data-load-content>
-                <div class="rounded-3 p-2" style="background-color: #F2F2F4;">
-                    <div class="d-flex justify-content-center align-items-center">
-                        <span class="fs-5 fw-bold">Hombre</span>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col d-flex justify-content-center align-items-center">
-            <a href="#" class="text-decoration-none py-2" style="color: black;">
-                <div class="rounded-3 p-2" style="background-color: #F2F2F4;">
-                    <div class="d-flex justify-content-center align-items-center">
-                        <span class="fs-5 fw-bold">Mujer</span>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col d-flex justify-content-center align-items-center">
-            <a href="#" class="text-decoration-none py-2" style="color: black;">
-                <div class="rounded-3 p-2" style="background-color: #F2F2F4;">
-                    <div class="d-flex justify-content-center align-items-center">
-                        <span class="fs-5 fw-bold">Niño</span>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col d-flex justify-content-center align-items-center">
-            <a href="#" class="text-decoration-none py-2" style="color: black;">
-                <div class="rounded-3 p-2" style="background-color: #F2F2F4;">
-                    <div class="d-flex justify-content-center align-items-center">
-                        <span class="fs-5 fw-bold">Niña</span>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </nav>
-</div>

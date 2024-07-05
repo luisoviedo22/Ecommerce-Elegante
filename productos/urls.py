@@ -19,4 +19,8 @@ from . import views
 
 urlpatterns = [
     path('catalogo/', views.catalogo, name="catalogo"),
+    path('admin/productos/add/', views.add_producto, name='add_producto'),
+    path('admin/productos/delete/<int:producto_id>/', views.delete_producto, name='delete_producto'),
+    path('admin/productos/', views.admin_productos, name='admin_productos'),
+    path('admin/productos/edit/<int:producto_id>/', views.edit_producto, name='edit_producto'),
 ]
