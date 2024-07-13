@@ -1,0 +1,88 @@
+{% extends "partials/admin/body.html" %}
+{% load static %}
+
+{% block contenido %}
+<div class="container-fluid border rounded pb-4" style="width:50%">
+    <div class="row justify-content-center w-100 p-3">
+        <h1 class="text-center pb-3">Editar Producto</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" value="{{ producto.nombre }}" required>
+            </div>
+            <div class="form-group">
+                <label for="descripcion">Descripción</label>
+                <textarea class="form-control" id="descripcion" name="descripcion" rows="3" required>{{ producto.descripcion }}</textarea>
+            </div>
+            <div class="form-group">
+                <label for="precio">Precio</label>
+                <input type="number" class="form-control" id="precio" name="precio" value="{{ producto.precio }}" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="genero">Género</label>
+                <select class="form-control" id="genero" name="genero" required>
+                    <option value="">Selecciona un género</option>
+                    <option value="Hombre" {% if producto.genero == 'Hombre' %}selected{% endif %}>Hombre</option>
+                    <option value="Mujer" {% if producto.genero == 'mujer' %}selected{% endif %}>Mujer</option>
+                    <option value="Niño" {% if producto.genero == 'Niño' %}selected{% endif %}>Niño</option>
+                    <option value="Niña" {% if producto.genero == 'Niña' %}selected{% endif %}>Niña</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="categoria">Categoría</label>
+                <select class="form-control" id="categoria" name="categoria" required>
+                    <option value="">Selecciona una categoría</option>
+                    <option value="bermudas" {% if producto.categoria == 'bermudas' %}selected{% endif %}>Bermudas</option>
+                    <option value="blusas" {% if producto.categoria == 'blusas' %}selected{% endif %}>Blusas</option>
+                    <option value="camisas" {% if producto.categoria == 'camisas' %}selected{% endif %}>Camisas</option>
+                    <option value="chamarras" {% if producto.categoria == 'chamarras' %}selected{% endif %}>Chamarras</option>
+                    <option value="pantalonetas" {% if producto.categoria == 'pantalonetas' %}selected{% endif %}>Pantalonetas</option>
+                    <option value="pantalones" {% if producto.categoria == 'pantalones' %}selected{% endif %}>Pantalones</option>
+                    <option value="sacos" {% if producto.categoria == 'sacos' %}selected{% endif %}>Sacos</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="talla">Talla</label>
+                <select class="form-control" id="talla" name="talla" required>
+                    <option value="">Selecciona una talla</option>
+                    <option value="XS" {% if producto.talla == 'XS' %}selected{% endif %}>XS</option>
+                    <option value="S" {% if producto.talla == 'S' %}selected{% endif %}>S</option>
+                    <option value="M" {% if producto.talla == 'M' %}selected{% endif %}>M</option>
+                    <option value="L" {% if producto.talla == 'L' %}selected{% endif %}>L</option>
+                    <option value="Xl" {% if producto.talla == 'Xl' %}selected{% endif %}>Xl</option>
+                    <option value="XXl" {% if producto.talla == 'XXl' %}selected{% endif %}>XXl</option>
+                    <option value="28" {% if producto.talla == '28' %}selected{% endif %}>28</option>
+                    <option value="30" {% if producto.talla == '30' %}selected{% endif %}>30</option>
+                    <option value="32" {% if producto.talla == '32' %}selected{% endif %}>32</option>
+                    <option value="34" {% if producto.talla == '34' %}selected{% endif %}>34</option>
+                    <option value="36" {% if producto.talla == '36' %}selected{% endif %}>36</option>
+                    <option value="S" {% if producto.talla == 'S' %}selected{% endif %}>S</option>
+                    <option value="M" {% if producto.talla == 'M' %}selected{% endif %}>M</option>
+                    <option value="5Y" {% if producto.talla == '5Y' %}selected{% endif %}>5Y</option>
+                    <option value="7Y" {% if producto.talla == '7Y' %}selected{% endif %}>7Y</option>
+                    <option value="11Y" {% if producto.talla == '11Y' %}selected{% endif %}>11Y</option>
+                    <option value="13Y" {% if producto.talla == '13Y' %}selected{% endif %}>13Y</option>
+                    <option value="L" {% if producto.talla == 'L' %}selected{% endif %}>L</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="color">Color</label>
+                <input type="text" class="form-control" id="color" name="color" value="{{ producto.color }}" required>
+            </div>
+            <div class="form-group">
+                <label for="cantidad">Cantidad</label>
+                <input type="number" class="form-control" id="cantidad" name="cantidad" value="{{ producto.cantidad }}" min="1" step="1" required>
+            </div>
+            <div class="form-group">
+                <label for="imagen">Imagen</label>
+                <input type="file" class="form-control-file" id="imagen" name="imagen">
+                {% if producto.imagen %}
+                    <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}" class="img-thumbnail mt-2" style="max-width: 200px;">
+                {% endif %}
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        </form>
+    </div>
+</div>
+{% endblock contenido %}

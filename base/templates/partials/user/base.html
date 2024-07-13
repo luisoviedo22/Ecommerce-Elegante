@@ -6,13 +6,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tienda Virtual - Moda</title>
-    <link rel="shortcut icon" href="{% static 'img/icono_web copy.png' %}">
+    <link rel="shortcut icon" href="{% static 'img\icono_web.png' %}">
+    <link rel="stylesheet" href="{% static 'css\plugins\vista.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="{% static 'plugins\jquery\jquery.min.js' %}"></script> 
     {% bootstrap_css %}
     {% bootstrap_javascript %}
 </head>
 <body>
-    {% include 'partials/user/header.html' %}
+    {% block header %}
+        {% if user.is_authenticated %}
+            {% include 'users/registrados/registrado_header.html' %}
+        {% else %}
+            {% include 'partials/user/header.html' %}
+        {% endif %}
+    {% endblock %}
 
     {% include "partials/user/navbar.html" %}
 

@@ -1,0 +1,19 @@
+{% block modal %}
+    <div class="modal-header text-center">
+        <h5 class="modal-title" id="carritoModalLabel">Carrito de compras - Tienda Virtual</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body text-center">
+        <h3><strong>¡Tú carrito de compras está vacío!</strong></h3>
+    </div>
+    <div class="modal-body text-center">
+        <h3><strong>Consulta nuestros productos:</strong></h3>
+    </div>
+    <div class="modal-body text-center">
+        <a href="{% url 'catalogo' %}" class="btn btn-primary">Productos</a>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Finalizar compra</button>
+    </div>
+{% endblock %}

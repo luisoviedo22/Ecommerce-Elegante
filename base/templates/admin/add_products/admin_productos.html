@@ -19,6 +19,7 @@
             </thead>
             <tbody>
                 {% for producto in productos %}
+                {% if producto.estado %}
                 <tr>
                     <td>
                         {% if producto.imagen %}
@@ -31,16 +32,21 @@
                     <td>{{ producto.talla }}</td>
                     <td>
                         <a href="{% url 'edit_producto' producto.id %}" class="btn btn-primary btn-sm">Editar</a>
-                        <a href="{% url 'delete_producto' producto.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                        <a href="{% url 'producto-delete' producto.id %}" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#eliminarProductoModal" data-bs-id="{{ producto.id }}" onclick="refreshProductsTable()">Eliminar</a>
                     </td>
                 </tr>
+                {% endif %}
                 {% endfor %}
             </tbody>
         </table>
         {% block scripts_product %}
+            <script src="{% static 'plugins\jquery\jquery.min.js' %}"></script> 
+            <link href="{% static 'js\plugins\DataTables\datatables.min.css' %}" rel="stylesheet">
+            <script src="{% static 'js\plugins\DataTables\datatables.min.js' %}"></script>
             <script>
                 $(document).ready(function() {
-                    $('#productos-table').DataTable({
+                    var productsTable = $('#productos-table').DataTable({
+                        retrieve: true,
                         buttons: ['copy', 'csv', 'excel', 'pdf', 'print', 'colvis'],
                         layout: {
                             topStart: 'buttons'
@@ -49,7 +55,20 @@
                         scroller: true
                     });
                 });
+                function refreshProductsTable() {
+                    var productsTable = $('#productos-table').DataTable();
+                    productsTable.draw();
+                }                
             </script>
+            <script>
+                var eliminarProductoModal = document.getElementById('eliminarProductoModal')
+                eliminarProductoModal.addEventListener('show.bs.modal', function (event) {
+                  var button = event.relatedTarget
+                  var productoId = button.getAttribute('data-bs-id')
+                  var eliminarProductoBtn = eliminarProductoModal.querySelector('#eliminarProductoBtn')
+                  eliminarProductoBtn.href = "{% url 'producto-delete' 0 %}".replace('0', productoId)
+                })
+              </script>              
         {% endblock scripts_product %}
     </div>
 </div>

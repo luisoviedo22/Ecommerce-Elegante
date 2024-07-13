@@ -1,0 +1,7 @@
+
+.product-image-container {
+    height: 400px;
+}
+.product-image {
+    object-fit: contain !important;
+}         

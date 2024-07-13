@@ -1,0 +1,258 @@
+{% extends "partials/user/base.html" %}
+{% load static %}
+
+{% block contenido %}
+<style>
+    .img-container {
+        width: 100%;
+        height: 0;
+        padding-bottom: 100%; /* Establece la relación de aspecto al 100% */
+        position: relative;
+        overflow: hidden;
+    }
+
+    .img-container img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    .container input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+      }
+      
+      .container {
+        display: block;
+        position: relative;
+        cursor: pointer;
+        user-select: none;
+      }
+      
+      .container svg {
+        position: relative;
+        top: 0;
+        left: 0;
+        height: 50px;
+        width: 50px;
+        transition: all 0.3s;
+        fill: #666;
+      }
+      
+      .container svg:hover {
+        transform: scale(1.1);
+      }
+      
+      .container input:checked ~ svg {
+        fill: #ffeb49;
+      }     
+      
+      .product-rating .star {
+        font-size: 24px;
+        color: #ccc;
+        cursor: pointer;
+    }
+    
+    .product-rating .star.selected {
+        color: #ffc107;
+    }
+    
+    .product-comments .comment-input {
+        width: 100%;
+        height: 100px;
+        resize: vertical;
+    }
+</style>
+<div class="container-fluid pt-4">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-6 border rounded text-center">
+            <div class="img-container">
+                <img id="imagen-principal" src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}" class="img-fluid">
+            </div>
+        </div>
+        <div class="col-12 col-md-4 text-left">
+            <h2><strong>{{ producto.descripcion }}</strong></h2>
+            <p><strong>$ {{ producto.precio }}</strong></p>
+            <h5>Talla</h5>
+            <div class="d-flex flex-wrap">
+                <button class="btn btn-outline-secondary m-1" onclick="seleccionarTalla(this)">
+                    <a>XS</a>
+                    <span class="d-none" id="talla-seleccionada"><i class="fas fa-times"></i></span>
+                </button>
+                <button class="btn btn-outline-secondary m-1" onclick="seleccionarTalla(this)">
+                    <a>S</a>
+                    <span class="d-none" id="talla-seleccionada"><i class="fas fa-times"></i></span>
+                </button>
+                <button class="btn btn-outline-secondary m-1" onclick="seleccionarTalla(this)">
+                    <a>M</a>
+                    <span class="d-none" id="talla-seleccionada"><i class="fas fa-times"></i></span>
+                </button>
+                <button class="btn btn-outline-secondary m-1" onclick="seleccionarTalla(this)">
+                    <a>L</a>
+                    <span class="d-none" id="talla-seleccionada"><i class="fas fa-times"></i></span>
+                </button>
+                <button class="btn btn-outline-secondary m-1" onclick="seleccionarTalla(this)">
+                    <a>XL</a>
+                    <span class="d-none" id="talla-seleccionada"><i class="fas fa-times"></i></span>
+                </button>
+            </div>
+            <h5>Color</h5>
+            <div class="">
+                
+            </div>
+            <h5>Cantidad</h5>
+            <div class="d-flex align-items-center pb-3">
+                <button class="btn btn-outline-secondary btn-sm w-auto h-auto" onclick="decrementarCantidad()">
+                    <i class="fas fa-minus"></i>
+                </button>
+                <input type="number" class="form-control form-control-sm mx-2 h-auto text-center m-0 p-0" id="cantidad" value="1" min="1" max="{{ producto.cantidad_disponible }}" style="width:10%" readonly>
+                <button class="btn btn-outline-secondary btn-sm w-auto h-auto" onclick="incrementarCantidad()">
+                    <i class="fas fa-plus"></i>
+                </button>
+            </div>            
+            <button class="btn btn-dark border" id="agregar-al-carrito" data-producto-id="{{ producto.id }}">Agregar al carrito</button>
+        </div>
+    </div>
+</div>
+<div class="container-fluid pt-5">
+    <div class="row justify-content-center">
+        <div class="col-10">
+            <h2><strong>Productos relacionados</strong></h2>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div>
+            
+        </div>
+    </div>
+</div>
+<div class="container-fluid product-rating-and-comments">
+    <div class="row justify-content-center pb-3">
+        <div class="col-10">
+            <h2><strong>Califica y comenta este producto</strong></h2>
+            <div class="product-rating">
+                <span class="star" data-value="1">&#9733;</span>
+                <span class="star" data-value="2">&#9733;</span>
+                <span class="star" data-value="3">&#9733;</span>
+                <span class="star" data-value="4">&#9733;</span>
+                <span class="star" data-value="5">&#9733;</span>
+                <span class="rating-value"></span>
+            </div>
+            <div class="product-comments">
+                <textarea class="comment-input" placeholder="Escribe tu comentario..."></textarea>
+                <button class="btn btn-dark border submit-comment">Enviar comentario</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function decrementarCantidad() {
+        var cantidad = document.getElementById("cantidad");
+        if (cantidad.value > 1) {
+            cantidad.value--;
+        }
+    }
+    
+    function incrementarCantidad() {
+        var cantidad = document.getElementById("cantidad");
+        if (cantidad.value < {{ producto.cantidad }}) {
+            cantidad.value++;
+        }
+    }
+
+    function seleccionarTalla(elemento) {
+        var tallasSeleccionadas = document.querySelectorAll("#talla-seleccionada");
+        tallasSeleccionadas.forEach(function(talla) {
+            talla.classList.add("d-none");
+        });
+
+        var tallaSeleccionada = elemento.querySelector("#talla-seleccionada");
+        tallaSeleccionada.classList.remove("d-none");
+    }
+    
+    $(document).ready(function() {
+        // Seleccionar estrellas
+        $('.star').click(function() {
+            var rating = $(this).data('value');
+            $('.star').removeClass('selected');
+            $('.star').each(function(index) {
+                if (index < rating) {
+                    $(this).addClass('selected');
+                }
+            });
+            $('.rating-value').text(rating);
+        });
+    
+        // Enviar comentario
+        $('.submit-comment').click(function() {
+            var comment = $('.comment-input').val();
+            // Aquí debes agregar la lógica para enviar el comentario al servidor
+            console.log('Comentario enviado:', comment);
+        });
+    });
+</script>
+{% block scripts %}
+  <script>
+    document.getElementById('agregar-al-carrito').addEventListener('click', function() {
+      var productoId = this.dataset.productoId;
+      
+      // Enviar una solicitud AJAX para agregar el producto al carrito
+      fetch('{% url "carrito" %}', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'X-CSRFToken': '{{ csrf_token }}'
+        },
+        body: 'producto_id=' + productoId
+      })
+      .then(response => response.json())
+      .then(data => {
+        // Actualizar el modal con los nuevos productos del carrito
+        actualizarModal(data.carrito);
+      })
+      .catch(error => {
+        console.error('Error al agregar el producto al carrito:', error);
+      });
+    });
+    
+    function actualizarModal(carrito) {
+      var modalBody = document.querySelector('#carritoModal .modal-body');
+      modalBody.innerHTML = '';
+      
+      // Mostrar los productos en el modal
+      carrito.forEach(function(producto) {
+        var productoElement = document.createElement('div');
+        productoElement.classList.add('producto-carrito');
+        productoElement.innerHTML = `
+          <img src="${producto.imagen}" alt="${producto.nombre}" class="img-fluid">
+          <h5>${producto.nombre}</h5>
+          <p>Precio: $${producto.precio}</p>
+          <p>Cantidad: <input type="number" class="form-control form-control-sm" value="${producto.cantidad}" min="1"></p>
+          <button class="btn btn-danger btn-sm eliminar-producto" data-producto-id="${producto.id}">
+            <i class="fas fa-times"></i>
+          </button>
+        `;
+        modalBody.appendChild(productoElement);
+      });
+      
+      // Agregar eventos para eliminar productos del carrito
+      var eliminarProductosButtons = modalBody.querySelectorAll('.eliminar-producto');
+      eliminarProductosButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+          var productoId = this.dataset.productoId;
+          // Enviar una solicitud AJAX para eliminar el producto del carrito
+          // y actualizar el modal
+        });
+      });
+    }
+  </script>
+{% endblock %}
+{% endblock %}

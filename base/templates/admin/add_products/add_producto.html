@@ -4,9 +4,9 @@
 {% block contenido %}
 <div class="container-fluid d-flex justify-content-center">
     <div class="col-md-6">
-        <h1 class="text-center mb-4">Agregar productos</h1>
-
+        
         <form method="post" enctype="multipart/form-data" class="border rounded card p-5">
+            <h1 class="text-center pb-3">Agregar productos</h1>
             {% csrf_token %}
             <div class="form-group">
                 <label for="nombre">Nombre</label>
@@ -17,25 +17,65 @@
                 <textarea class="form-control" id="descripcion" name="descripcion" rows="3" required></textarea>
             </div>
             <div class="form-group">
+                <label for="categoria">Categoría</label>
+                <select class="form-control" id="categoria" name="categoria" required>
+                    <option value="">Selecciona una categoría</option>
+                    <option value="Bermudas">Bermudas</option>
+                    <option value="Blusas">Blusas</option>
+                    <option value="camisas">Camisas</option>
+                    <option value="Chamarras">Chamarras</option>
+                    <option value="pantalones">Pantalonetas</option>
+                    <option value="Pantalonetas">Pantalones</option>
+                    <option value="sacos">Sacos</option>
+                </select>
+            </div>
+            <div class="form-group">
                 <label for="precio">Precio</label>
                 <input type="number" class="form-control" id="precio" name="precio" step="0.01" required>
             </div>
             <div class="form-group">
-                <label for="categoria">Categoría</label>
-                <select class="form-control" id="categoria" name="categoria" required>
-                    <option value="">Selecciona una categoría</option>
-                    <option value="camisas">Bermudas</option>
-                    <option value="pantalones">Camisas</option>
-                    <option value="vestidos">Chamarras</option>
-                    <option value="zapatos">Pantalonetas</option>
-                    <option value="zapatos">Pantalones</option>
-                    <option value="zapatos">Sacos</option>
+                <label for="genero">Género</label>
+                <select class="form-control" id="genero" name="genero" required>
+                    <option value="">Selecciona un género</option>
+                    <option value="Hombre">Hombre</option>
+                    <option value="Mujer">Mujer</option>
+                    <option value="Niño">Niño</option>
+                    <option value="Niña">Niña</option>
+                </select>
+            </div>                                            
+            <div class="form-group">
+                <label for="talla">Talla</label>
+                <select class="form-control" id="talla" name="talla" required>
+                    <option disabled selected style="font-weight: bold; color:grey">Selecciona una talla</option>
+                    <option value="XS">XS</option>
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                    <option value="Xl">Xl</option>
+                    <option value="XXl">XXl</option>
+                    <option value="28">28</option>
+                    <option value="30">30</option>
+                    <option value="32">32</option>
+                    <option value="34">34</option>
+                    <option value="36">36</option>
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="5Y">5Y</option>
+                    <option value="7Y">7Y</option>
+                    <option value="9Y">9Y</option>
+                    <option value="11Y">11Y</option>
+                    <option value="13Y">13Y</option>
+                    <option value="L">L</option>
                 </select>
             </div>
             <div class="form-group">
-                <label for="talla">Talla</label>
-                <input type="text" class="form-control" id="talla" name="talla" required>
+                <label for="color">Color</label>
+                <input type="text" class="form-control" id="color" name="color" required>
             </div>
+            <div class="form-group">
+                <label for="cantidad">Cantidad</label>
+                <input type="number" class="form-control" id="cantidad" name="cantidad" min="1" step="1" required>
+            </div>            
             <div class="form-group">
                 <label for="imagen">Imagen</label>
                 <input type="file" class="form-control-file" id="imagen" name="imagen">

@@ -1,0 +1,94 @@
+{% extends "partials/user/base.html" %}
+{% load static %}
+
+{% block contenido %}
+<div class="row p-3">
+    <div class="col-6 col-md-2 text-left">
+        <button class="btn btn-secondary" id="toggleFilterButton">
+            <img src="{% static 'img/ajustes.svg' %}" alt="ajustes">
+            <span>Ocultar filtros</span>
+        </button>
+    </div>
+    <div class="col-sm-6 col-md-8 text-center">
+        <h2>Niña</h2>
+    </div>
+</div>
+<div class="row g-0 text-left px-3">
+    <div class="col-md-3 border border-3 border-black rounded-5 p-4 position-sticky top-0 h-50" id="filterBox">
+        <form method="GET" action="{% url 'productos-nina' %}">
+            <div class="form-group">
+                <strong>Filtrar por:</strong>
+                <a href="{% url 'productos-nina' %}" class="btn border-0 ms-5 text-decoration-underline display: inline-block">
+                    <span>QUITAR FILTROS</span>
+                </a>
+                <div class="row pt-3">
+                    <div class="form-group">
+                        <label for="category">Categoría</label>
+                        <select class="form-control" id="categoria-filter" name="categoria">
+                            <option value="">Todas las categorías</option>
+                            <option value="Bermudas" {% if request.GET.categoria == 'Bermudas' %}selected{% endif %}>Bermudas</option>
+                            <option value="Blusas" {% if request.GET.categoria == 'Blusas' %}selected{% endif %}>Blusas</option>
+                            <option value="Camisas" {% if request.GET.categoria == 'Camisas' %}selected{% endif %}>Camisas</option>
+                            <option value="Chamarras" {% if request.GET.categoria == 'Chamarras' %}selected{% endif %}>Chamarras</option>
+                            <option value="Pantalones" {% if request.GET.categoria == 'Pantalones' %}selected{% endif %}>Pantalones</option>
+                            <option value="Pantalonetas" {% if request.GET.categoria == 'Pantalonetas' %}selected{% endif %}>Pantalonetas</option>
+                            <option value="Sacos" {% if request.GET.categoria == 'Sacos' %}selected{% endif %}>Sacos</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row py-3">
+                <div class="form-group">
+                    <label for="size">Talla</label>
+                    <select class="form-control" id="talla-filter" name="talla">
+                        <option value="">Todas las tallas</option>
+                        <option value="S" {% if request.GET.talla == 'S' %}selected{% endif %}>S</option>
+                        <option value="M" {% if request.GET.talla == 'M' %}selected{% endif %}>M</option>
+                        <option value="5Y" {% if request.GET.talla == '5Y' %}selected{% endif %}>5Y</option>
+                        <option value="7Y" {% if request.GET.talla == '7Y' %}selected{% endif %}>7Y</option>
+                        <option value="9Y" {% if request.GET.talla == '9Y' %}selected{% endif %}>9Y</option>
+                        <option value="11Y" {% if request.GET.talla == '11Y' %}selected{% endif %}>11Y</option>
+                        <option value="13Y" {% if request.GET.talla == '13Y' %}selected{% endif %}>13Y</option>
+                        <option value="L" {% if request.GET.talla == 'L' %}selected{% endif %}>L</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <label for="price">Precio</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">$</span>
+                        </div>
+                        <input type="number" class="form-control" id="precio-filter" name="precio_max" placeholder="Precio máximo" value="{{ request.GET.precio_max }}">
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button class="btn btn-outline-secondary mt-3 w-100" type="submit"><strong>Aplicar Filtros</strong></button>
+            </div>
+        </form>
+    </div>
+    <div class="col-sm-9 p-3 product-container overflow-auto" style="max-height: 80vh;">
+        <div class="row row-cols-1 row-cols-md-3 g-4" id="productos-container">
+            {% for producto in productos %}
+            <div class="col">
+                <a href="{% url 'vista-producto' producto.id %}" class="text-decoration-none" style="color: black">
+                  <div class="card h-100">
+                    <div class="card-img-top position-relative overflow-hidden bg-light" style="height: 400px;">
+                        <img src="{{ producto.imagen.url }}" class="img-fluid w-100 h-100 object-fit-contain" alt="{{ producto.nombre }}">
+                    </div>                                      
+                    <div class="card-body d-flex flex-column">
+                      <p class="card-text">{{ producto.descripcion }}</p>
+                      <p class="card-text"><strong>$ {{ producto.precio }}</strong></p>
+                    </div>
+                  </div>
+                </a>
+            </div>              
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<script src="{% static 'plugins\jquery\jquery.min.js' %}"></script>
+<script src="{% static 'js\productos\filtro.js' %}"></script>
+{% endblock %}

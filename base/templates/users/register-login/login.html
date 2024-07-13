@@ -1,0 +1,88 @@
+{% load django_bootstrap5 %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script src="{% static 'plugins\jquery\jquery.min.js' %}"></script> 
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .login-container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .login-container h2 {
+            margin-bottom: 20px;
+        }
+        .login-container input[type="email"], .login-container input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .login-container .actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .login-container .actions a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+        .login-container .actions a:hover {
+            text-decoration: underline;
+        }
+        .login-container button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+        }
+        .login-container button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Inicia sesión</h2>
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            {{ form.email.label_tag }} 
+            {{ form.email }}
+            {% for error in form.email.errors %}
+                <p style="color: red;">{{ error }}</p>
+            {% endfor %}
+
+            {{ form.password.label_tag }}
+            {{ form.password }}
+            {% for error in form.password.errors %}
+                <p style="color: red;">{{ error }}</p>
+            {% endfor %}
+            
+            <div class="actions">
+                <a href="#">Olvidé mi contraseña</a>
+                <a href="{% url 'register' %}">Regístrarme ahora</a>
+            </div>
+            
+            <div class="actions">
+                <a href="{% url "index-user" %}">Regresar</a>
+                <button type="submit">Ingresar</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

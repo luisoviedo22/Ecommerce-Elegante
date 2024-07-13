@@ -2,36 +2,72 @@
 {% load static %}
 
 {% block contenido %}
-    <div id="carouselExampleIndicators" class="carousel slide d-flex justify-content-center align-items-center py-5 border-bottom" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-        </div>
-        <div class="carousel-inner h-100">
-            <div class="carousel-item active h-100">
-                <div class="d-flex justify-content-center align-items-center">
-                    <img src="{% static 'img/mark1.jpg' %}" class="img-fluid mw-100 mh-100" alt="Imagen 1">
-                </div>
-            </div>
-            <div class="carousel-item h-100">
-                <div class="d-flex justify-content-center align-items-center">
-                    <img src="{% static 'img/mark2.jpg' %}" class="img-fluid mw-100 mh-100" alt="Imagen 2">
-                </div>
-            </div>
-            <div class="carousel-item h-100">
-                <div class="d-flex justify-content-center align-items-center">
-                    <img src="{% static "img/mark3.jpg" %}" class="img-fluid mw-100 mh-100" alt="Imagen 3">
-                </div>
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon border bg-black rounded-pill" style="height: 10%" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-            <span class="carousel-control-next-icon border bg-black rounded-pill" style="height: 10%" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
+<div id="carouselExampleIndicators" class="carousel slide d-flex justify-content-center align-items-center py-5 border-bottom" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
     </div>
+    <div class="carousel-inner h-100">
+        <div class="carousel-item active h-100 ratio ratio-16x9">
+            <img src="{% static 'img/mark1.jpg' %}" alt="Imagen 1" class="img-fluid w-90 h-90">
+        </div>
+        <div class="carousel-item h-100 ratio ratio-16x9">
+            <img src="{% static 'img/mark2.jpg' %}" alt="Imagen 2" class="img-fluid w-90 h-90">
+        </div>
+        <div class="carousel-item h-100 ratio ratio-16x9">
+            <img src="{% static "img/mark3.jpg" %}" alt="Imagen 3" class="img-fluid w-90 h-90">
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon border bg-black rounded-pill" style="height: 3rem; width: 3rem;" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon border bg-black rounded-pill" style="height: 3rem; width: 3rem;" aria-hidden="true"></span>
+        <span class="visually-hidden"></span>
+    </button>
+</div>
+<div class="container-fluid d-flex justify-content-center pt-5">
+    <div class="row">
+        <div class="col-12">
+            <h3><strong>¡Siéntete bien con nuestras prendas!</strong></h3>
+        </div>
+    </div>
+</div>
+<div class="container-fluid d-flex justify-content-center pb-5">
+    <div class="row pb-5">
+        <div class="col-12 col-md-4 d-flex justify-content-center align-items-center">
+            <div class="border h-75 w-100">
+                <img src="{% static 'img\casual.jpg' %}" alt="estilo casual" class="w-100 h-100">
+                <h4 class="pt-2">Estilo casual</h4>
+                <ul class="list-unstyled" style="color: #868686">
+                    <li>Comodidad y estilo para el día a día</li>
+                    <li>Vestimenta relajada y versátil</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 d-flex justify-content-center align-items-center">
+            <div class="border h-75 w-100">
+                <img src="{% static 'img\formal.jpg' %}" alt="estilo formal" class="w-100 h-100">
+                <h4 class="pt-2">Estilo formal</h4>
+                <ul class="list-unstyled" style="color: #868686">
+                    <li>Elegancia y profesionalismo en cada detalle</li>
+                    <li>Atuendos sofisticados para ocasiones especiales</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 d-flex justify-content-center align-items-center">
+            <div class="border h-75 w-100">
+                <img src="{% static 'img\deportivo.jpg' %}" alt="estilo deportivo" class="w-100 h-100">
+                <h4 class="pt-2">Estilo deportivo</h4>
+                <ul class="list-unstyled" style="color: #868686">
+                    <li>Dinamismo y libertad de movimiento</li>
+                    <li>Prendas ideales para actividades activas</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+    
 {% endblock %}

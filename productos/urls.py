@@ -20,7 +20,12 @@ from . import views
 urlpatterns = [
     path('catalogo/', views.catalogo, name="catalogo"),
     path('admin/productos/add/', views.add_producto, name='add_producto'),
-    path('admin/productos/delete/<int:producto_id>/', views.delete_producto, name='delete_producto'),
     path('admin/productos/', views.admin_productos, name='admin_productos'),
     path('admin/productos/edit/<int:producto_id>/', views.edit_producto, name='edit_producto'),
+    path('admin/productos/eliminar/<int:id>/', views.delete_producto, name='producto-delete'),
+    path('catalogo/productos/producto/<int:id>/', views.view_product, name='vista-producto'),
+    path('productos/hombre/', views.productos_hombre, name='productos-hombre'),
+    path('productos/mujer/', views.productos_mujer, name='productos-mujer'),
+    path('productos/nino/', views.productos_nino, name='productos-nino'),
+    path('productos/nina/', views.productos_nina, name='productos-nina'),
 ]

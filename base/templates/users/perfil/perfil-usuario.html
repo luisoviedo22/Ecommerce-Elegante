@@ -1,0 +1,160 @@
+{% extends "partials/user/base.html" %}
+{% load static %}
+
+{% block contenido %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Cuenta</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+   
+    <h1>Mi Cuenta</h1>
+    
+    <style>
+        h1 {
+            text-align: center;
+        }
+    
+        #sidebar {
+            width: 50%;
+            background-color: #f0f0f0;
+            padding: 30px;
+        }
+    
+    </style>
+
+    <body>
+        <div class="container-fluid border rounded p-5" style="width:90%">
+            <h2 class="my-4">Mi Perfil</h2>
+            <div class="info">
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <p>{{ User.username }}</p>
+                </div>
+            </div>
+    
+            <div class="container-fluid">
+                <div class="row mb-12">
+                    <div class="col-sm-4">
+                        <div id="sidebar">
+                            <nav class="mt-12">
+                                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link">
+                                            <i class="nav-icon fas fa-book"></i>
+                                            <p>
+                                                Mi cuenta
+                                                <i class="fas fa-angle-left right"></i>
+                                            </p>
+                                        </a>
+                                        <ul class="nav nav-treeview">
+                                            <li class="nav-item">
+                                                <a href="{% url "perfil-actualizar" %}" class="nav-link">
+                                                    <i class="far fa-circle nav-icon"></i>
+                                                    <p>Actualizar mis datos</p>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="#" class="nav-link">
+                                                    <i class="far fa-circle nav-icon"></i>
+                                                    <p>Mis Compras</p>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="#" class="nav-link">
+                                                    <i class="far fa-circle nav-icon"></i>
+                                                    <p>Salir</p>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+            <div class="container-fluid border rounded p-10" style="width: 65%; ">
+                <form id="miFormulario"  method="POST">
+                    {% csrf_token %}
+
+                <div class="row mb-5">
+                    <div class="col-sm-6">                              
+                       <label for="nombre">Nombre:</label>
+                       <input type="hidden" class="form-control" id="nombre" name="nombre" required disabled/>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="apellido">Apellido:</label>
+                        <input type="hidden" class="form-control" id="apellido" name="apellido" required disabled>
+                    </div> 
+                </div>                        
+            
+                    <div class="row mb-5">
+                        <div class="col-sm-6">
+                            <label for="fecha_nacimiento">Fecha de Nacimiento:</label>
+                            <input type="hidden" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" required disabled>
+                        </div>                   
+                        <div class="col-sm-6">
+                            <label for="cedula">Cédula de Ciudadanía:</label>
+                            <input type="hidden" class="form-control" id="cedula" name="cedula" required disabled>
+                         </div>
+                    </div>  
+
+                    <div class="row mb-5">
+                        <div class="col-sm-6">
+                            <label for="email">Email:</label>
+                            <input type="hidden" class="form-control" id="email" name="email" required disabled>
+                         </div>    
+                        <div class="col-sm-6">
+                            <label for="telefono">Teléfono:</label>
+                            <input type="hidden" class="form-control" id="telefono" name="telefono" required disabled>
+                        </div>
+                    </div> 
+
+                    <div class="row mb-5">
+                        <div class="col-sm-6">
+                            <label for="genero">Género:</label>
+                            <select id="genero" name="genero">
+                                <option value="femenino">Femenino</option>
+                                <option value="masculino">Masculino</option>
+                            </select>
+                        </div>
+                    </div>
+
+                <div class="row mb-3">
+                    <div class="col-sm-8">     
+                        <input class="btn btn-success" type="submit" value="Confirmar" onclick="location.href='{% url 'perfil-actualizar' %}'" />
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+    <script>
+        // Al cargar la página, verifica si hay datos guardados en localStorage
+       const formulario = document.getElementById('miFormulario');
+        const nombreInput = document.getElementById('nombre');
+        const apellidoInput = document.getElementById('apellido');
+
+        // Cargar datos del localStorage al formulario
+        nombreInput.value = localStorage.getItem('nombre') || '';
+        apellidoInput.value = localStorage.getItem('apellido') || '';
+
+        // Escuchar el evento de envío del formulario
+        formulario.addEventListener('submit', (event) => {
+            event.preventDefault();
+            // Guardar datos en localStorage
+            localStorage.setItem('nombre', nombreInput.value);
+            localStorage.setItem('apellido', apellidoInput.value);
+            //-alert('Datos guardados correctamente');-->
+        });
+    </script>
+   
+    </div>
+</body>
+</html>
+{% endblock %}

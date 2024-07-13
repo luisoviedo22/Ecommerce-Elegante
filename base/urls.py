@@ -20,7 +20,7 @@ from base import settings
 from django.conf.urls.static import static
 from base import views
 
-from base.views import index_admin, index_user
+from base.views import index_admin
 
 urlpatterns = [
     path('', views.index_user, name="index-user"),
@@ -31,4 +31,6 @@ urlpatterns = [
     path('registros/api/', include("registros.api_urls")),
     
     path('productos/', include('productos.urls')),
+    path('carrito/', include('carrito.urls')),
+    path('password-reset/', include('password_reset.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
