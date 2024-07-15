@@ -43,7 +43,7 @@ class Usuario(models.Model):
     
     def usuario_activo(self):
         if self.estado:
-            return Usuario.objects.filter(usuario=self, estado=True)
+            return Usuario.objects.filter(user=self.user, estado=True)
         else:
             return Usuario.objects.none()
         

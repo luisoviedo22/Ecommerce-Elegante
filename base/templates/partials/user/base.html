@@ -16,7 +16,7 @@
 <body>
     {% block header %}
         {% if user.is_authenticated %}
-            {% include 'users/registrados/registrado_header.html' %}
+            {% include 'partials/user/registrado_header.html' %}
         {% else %}
             {% include 'partials/user/header.html' %}
         {% endif %}

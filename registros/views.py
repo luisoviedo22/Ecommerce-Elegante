@@ -85,7 +85,7 @@ def usuario_delete_view(request, id):
     return redirect('usuarios-listar')
 
 def header_register(request):
-    return render(request, 'users/registrados/registrado_header.html')
+    return render(request, 'templates/user/registrado_header.html')
 
 def add_products(request):
     return render(request, 'admin/add_products/add_producto.html')
@@ -133,7 +133,7 @@ def send_password_reset_email(request):
         if user:
             uidb64 = urlsafe_base64_encode(user.pk)
             token = default_token_generator.generate_token(user)
-            url = f'http://localhost:8000/password-reset/confirm/{uidb64}/{token}'
+            url = f'http://localhost:8000/password-reset/{uidb64}/{token}/'
             send_mail(
                 'Recuperación de contraseña',
                 f'Para restablecer tu contraseña, haz clic en el siguiente enlace: {url}',

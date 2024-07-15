@@ -31,6 +31,8 @@ urlpatterns = [
     path('registros/api/', include("registros.api_urls")),
     
     path('productos/', include('productos.urls')),
+    path('api/', include('productos.api_urls')),
     path('carrito/', include('carrito.urls')),
+    path('pagos/', include('pagos.urls')),
     path('password-reset/', include('password_reset.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

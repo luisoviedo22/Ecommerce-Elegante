@@ -29,7 +29,7 @@ urlpatterns = [
     path('registros/register/', views.register, name='register'),
     path('login/', views.login_view, name='login'),
     path('logout/', views.logout_view, name='logout'),
-    path('registros/password-reset/', views.password_reset_confirm, name="reset-password"),
+    path('password-reset-confirm/<uidb64>/<token>/', views.password_reset_confirm, name="password-reset-confirm"),
     path('perfil/', views.perfil, name='perfil'),
     path('perfil/actualizar/', views.actualizar_perfil, name='perfil-actualizar'),
 ]

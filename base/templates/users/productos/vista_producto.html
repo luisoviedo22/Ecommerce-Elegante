@@ -81,30 +81,9 @@
             <p><strong>$ {{ producto.precio }}</strong></p>
             <h5>Talla</h5>
             <div class="d-flex flex-wrap">
-                <button class="btn btn-outline-secondary m-1" onclick="seleccionarTalla(this)">
-                    <a>XS</a>
-                    <span class="d-none" id="talla-seleccionada"><i class="fas fa-times"></i></span>
-                </button>
-                <button class="btn btn-outline-secondary m-1" onclick="seleccionarTalla(this)">
-                    <a>S</a>
-                    <span class="d-none" id="talla-seleccionada"><i class="fas fa-times"></i></span>
-                </button>
-                <button class="btn btn-outline-secondary m-1" onclick="seleccionarTalla(this)">
-                    <a>M</a>
-                    <span class="d-none" id="talla-seleccionada"><i class="fas fa-times"></i></span>
-                </button>
-                <button class="btn btn-outline-secondary m-1" onclick="seleccionarTalla(this)">
-                    <a>L</a>
-                    <span class="d-none" id="talla-seleccionada"><i class="fas fa-times"></i></span>
-                </button>
-                <button class="btn btn-outline-secondary m-1" onclick="seleccionarTalla(this)">
-                    <a>XL</a>
-                    <span class="d-none" id="talla-seleccionada"><i class="fas fa-times"></i></span>
-                </button>
-            </div>
-            <h5>Color</h5>
-            <div class="">
-                
+                <div class="border gb-secondary p-2 rounded pb-0 px-3">
+                    <p><strong>{{ producto.talla }}</strong></p>
+                </div>
             </div>
             <h5>Cantidad</h5>
             <div class="d-flex align-items-center pb-3">
@@ -117,20 +96,6 @@
                 </button>
             </div>            
             <button class="btn btn-dark border" id="agregar-al-carrito" data-producto-id="{{ producto.id }}">Agregar al carrito</button>
-        </div>
-    </div>
-</div>
-<div class="container-fluid pt-5">
-    <div class="row justify-content-center">
-        <div class="col-10">
-            <h2><strong>Productos relacionados</strong></h2>
-        </div>
-    </div>
-</div>
-<div class="container-fluid">
-    <div class="row">
-        <div>
-            
         </div>
     </div>
 </div>
@@ -166,16 +131,6 @@
         if (cantidad.value < {{ producto.cantidad }}) {
             cantidad.value++;
         }
-    }
-
-    function seleccionarTalla(elemento) {
-        var tallasSeleccionadas = document.querySelectorAll("#talla-seleccionada");
-        tallasSeleccionadas.forEach(function(talla) {
-            talla.classList.add("d-none");
-        });
-
-        var tallaSeleccionada = elemento.querySelector("#talla-seleccionada");
-        tallaSeleccionada.classList.remove("d-none");
     }
     
     $(document).ready(function() {
